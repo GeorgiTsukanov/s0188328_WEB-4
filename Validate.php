@@ -34,7 +34,7 @@
         $error = array();
 
         $wordCount = countWord($fio);
-        if (!preg_match('/^[а-яёА-ЯЁ\s\-]+$/u', $fio)) {
+        if (!preg_match('/^[а-яёА-ЯЁ\s]+$/u', $fio)) {
             $error["fio"] = "ФИО может содержать только русские буквы, пробелы и дефисы";
         } elseif ($wordCount < 2 || $wordCount > 3) {
             $error["fio"] = "ФИО должно содержать 2 или 3 слова";
