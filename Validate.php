@@ -33,11 +33,11 @@
     function isValidatePost($fio, $email, $phone, $birthday, $gender, $languages) {  
         $error = array();
 
-        if (!preg_match('/^[а-яёА-ЯЁa-zA-Z\s]+$/u', $fio) && 
-            countWord($fio) < 2 &&
-            countWord($fio) > 3
-        ){
-            $error["fio"] = "Неверный формат ФИО";
+        $wordCount = countWord($fio);
+        if (!preg_match('/^[а-яёА-ЯЁ\s\-]+$/u', $fio)) {
+            $error["fio"] = "ФИО может содержать только русские буквы, пробелы и дефисы";
+        } elseif ($wordCount < 2 || $wordCount > 3) {
+            $error["fio"] = "ФИО должно содержать 2 или 3 слова";
         }
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error["email"] = "Неверный формат email";
